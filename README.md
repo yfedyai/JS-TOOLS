@@ -1,5 +1,5 @@
 # JS-TOOLS
-Gulp
+Gulp task bundler
 
-USE gulp command to watch files
-use gulp babel to transpilate from es6=>es5 js files
+- USE ```gulp``` command to watch files 
+- Use ```gulp babel``` to transpilate from es6=>es5 js files
