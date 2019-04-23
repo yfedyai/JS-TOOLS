@@ -55,7 +55,9 @@ gulp.task('cleanCss', () => {
 
 gulp.task('babel', () => {
     gulp.src('src/js/main.min.js')
-        .pipe(babel())
+        .pipe(babel({
+            presets: ['@babel/env'],
+        }))
         .pipe(gulp.dest('dist/ES5'));
 });
 
