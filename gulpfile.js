@@ -11,12 +11,6 @@ const del = require('del');
 const cache = require('gulp-cache');
 const babel = require('gulp-babel');
 
-// gulp.task ('name-task', function () {
-//     gulp.src(source-files) ///где лежат файлы, с которыми необходимо сделать что-то
-//     .pipe(gulpPlugin()) ///кто будет выполнять над ними действия
-// eslint-disable-next-line max-len
-//     .pipe(gulp.dest('destination-directory'))///куда сохранить файлы, над которыми выполнили действия
-// });
 
 gulp.task('browserSync', () => {
     browserSync({
