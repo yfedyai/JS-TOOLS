@@ -29,22 +29,12 @@ gulp.task('sass', () => {
             browsers: ['last 15 versions', '> 1%', 'ie 8', 'ie 7'],
             cascade: false,
         }))   
-        .pipe(cleanCss())     
+         .pipe(cleanCss())     
         .pipe(browserSync.reload({
             stream: true,
         }))
         .pipe(gulp.dest('src/css'));
 });
-
-
-// gulp.task('uglifyCss', () => {
-//     gulp.src('src/css/*.css') 
-//         .pipe(cleanCss())  
-//         .pipe(browserSync.reload({
-//             stream: true,
-//         }))
-//         .pipe(gulp.dest('src/css'));
-// });
 
 
 gulp.task('babel', () => {
