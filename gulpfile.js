@@ -28,23 +28,23 @@ gulp.task('sass', () => {
         .pipe(autoprefixer({
             browsers: ['last 15 versions', '> 1%', 'ie 8', 'ie 7'],
             cascade: false,
+        }))   
+        .pipe(cleanCss())     
+        .pipe(browserSync.reload({
+            stream: true,
         }))
-
-        .pipe(gulp.dest('src/css'))
-        .pipe(browserSync.reload({
-            stream: true,
-        }));
+        .pipe(gulp.dest('src/css'));
 });
 
 
-gulp.task('cleanCss', () => {
-    gulp.src('src/css/*.css')
-        .pipe(cleanCss())
-        .pipe(gulp.dest('src/css'))
-        .pipe(browserSync.reload({
-            stream: true,
-        }));
-});
+// gulp.task('uglifyCss', () => {
+//     gulp.src('src/css/*.css') 
+//         .pipe(cleanCss())  
+//         .pipe(browserSync.reload({
+//             stream: true,
+//         }))
+//         .pipe(gulp.dest('src/css'));
+// });
 
 
 gulp.task('babel', () => {
@@ -84,16 +84,15 @@ gulp.task('clean', () => {
 });
 
 
-gulp.task('watch', ['browserSync', 'sass', 'scripts', 'cleanCss'], () => {
+gulp.task ('watch', ['browserSync', 'sass', 'scripts'], () => {
     gulp.watch('src/scss/**/*.scss', ['sass']); // cледим за всемми scss файлами и применяем к нему плагин sass
     gulp.watch('src/*.html', browserSync.reload);
     gulp.watch('src/js/**/*.js', ['scripts']);
-    gulp.watch('src/css/**/*.css', ['cleanCss']);
 });
 
 
-gulp.task('build', ['clean', 'img', 'sass', 'scripts', 'cleanCss'], () => {
-    const buldFonts = gulp.src(['src/fonts/*'])
+gulp.task('build', ['clean', 'img', 'scripts', 'sass'], () => {
+    const buldFonts = gulp.src('src/fonts/*')
         .pipe(gulp.dest('dist/fonts'));
     const buildJs = gulp.src('src/js/*.js')
         .pipe(gulp.dest('dist/js'));
@@ -101,6 +100,8 @@ gulp.task('build', ['clean', 'img', 'sass', 'scripts', 'cleanCss'], () => {
         .pipe(gulp.dest('dist/img'));
     const buildHtml = gulp.src('src/*.html')
         .pipe(gulp.dest('dist'));
+    const buildCss = gulp.src('src/css/*.css')
+        .pipe(gulp.dest('dist/css'));   
 });
 
 
